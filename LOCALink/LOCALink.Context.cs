@@ -140,5 +140,26 @@ namespace LOCALink
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int sp_bookingshesh(Nullable<int> category_id, string booking_date, Nullable<decimal> total_price, Nullable<int> status)
+        {
+            var category_idParameter = category_id.HasValue ?
+                new ObjectParameter("category_id", category_id) :
+                new ObjectParameter("category_id", typeof(int));
+    
+            var booking_dateParameter = booking_date != null ?
+                new ObjectParameter("booking_date", booking_date) :
+                new ObjectParameter("booking_date", typeof(string));
+    
+            var total_priceParameter = total_price.HasValue ?
+                new ObjectParameter("total_price", total_price) :
+                new ObjectParameter("total_price", typeof(decimal));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_bookingshesh", category_idParameter, booking_dateParameter, total_priceParameter, statusParameter);
+        }
     }
 }

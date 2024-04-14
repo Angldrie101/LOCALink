@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -103,6 +105,39 @@ namespace LOCALink.Controllers
             _userRepo.Delete(id);
             TempData["Msg"] = $"User deleted!";
             return RedirectToAction("Index");
+        }
+        [AllowAnonymous]
+        public ActionResult BookService()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult BookService(Booking b)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    using (var dbContext = new LOCALinkEntities())
+                    {
+                        var catID = new SqlParameter("@category_id", b.category_id);
+                        var date = new SqlParameter("@booking_date", b.booking_date);
+                        var price = new SqlParameter("@total_price", b.total_price);
+
+                        dbContext.Database.ExecuteSqlCommand("sp_bookingshesh @category_id, @booking_date, @total_price", catID, date, price);
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                catch (Exception ex)
+                {
+                    TempData["Msg"] = $"Error: {ex.Message}";
+                }
+            }
+            return View();
+
         }
     }
 }

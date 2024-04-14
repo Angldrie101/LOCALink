@@ -17,7 +17,7 @@ namespace LOCALink
         public int booking_id { get; set; }
         public int customer_id { get; set; }
         public int category_id { get; set; }
-        public System.DateTime booking_date { get; set; }
+        public string booking_date { get; set; }
         public decimal total_price { get; set; }
         public int status { get; set; }
     
