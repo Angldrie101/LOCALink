@@ -61,18 +61,13 @@ namespace LOCALink.Controllers
                     switch (u.user_type)
                     {
                         case 1:
-                            // Set properties specific to Option1 user type
                             break;
                         case 2:
-                            // Set properties specific to Option2 user type
                             break;
-                        // Add cases for other user types as needed
                         default:
-                            // Handle default case or throw exception for unknown user type
                             throw new InvalidOperationException("Unknown user type.");
                     }
-
-                    // Call the repository method to add the user to the database
+                    
                     _userRepo.Create(u);
 
                     TempData["Msg"] = $"User {u.user_name} added as {u.user_type}!";
@@ -80,12 +75,10 @@ namespace LOCALink.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception or handle it appropriately
                     ModelState.AddModelError("", $"Error: {ex.Message}");
                 }
             }
-
-            // If ModelState is not valid or an exception occurred, return to the view with errors
+            
             return View(u);
         }
         public ActionResult Details(int id)

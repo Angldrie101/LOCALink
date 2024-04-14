@@ -40,19 +40,26 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">User Accounts</a></li>
-                                    <li><a class="dropdown-item" href="#">History</a></li>
+                                    <li><a class="dropdown-item" href="#">Transactions</a></li>
                                 </ul>
                             </li>
                         }
+                        if (User.IsInRole("Worker"))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="#">@User.Identity.Name</a></li>
+                            <li class="nav-item"><a class="nav-link" href="~/Home/Logout">Logout</a></li>
+                        }
                         <li class="nav-item"><a class="nav-link" href="#">@User.Identity.Name</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="~/Home/Logout">Logout</a></li>
                     }
                     else
                     {
                     <li class="nav-item"><a class="nav-link" href="/Home/Index">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#About">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Services">Services</a></li>
                     <li class="nav-item"><a class="nav-link" href="~/Home/Login">Login</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/Home/Create">Create</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/Home/Create">Sign Up</a></li>
                     }
                 </ul>
             </div>
@@ -61,11 +68,9 @@
     <!-- Masthead-->
     <header class="masthead">
         @RenderBody()
-        </div>
     </header>
 
-    <!-- About-->
-    <section class="page-section" id="about">
+    <section class="page-section" id="About">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-heading text-uppercase">About</h2>
@@ -125,11 +130,42 @@
                 </li>
             </ul>
         </div>
-    </section>  
-    <section class="page-section" id="dashboard">
+    </section>
+    <section class="page-section" id="Services">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">Services</h2>
+                <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="my-3">E-Commerce</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="my-3">Responsive Design</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="my-3">Web Security</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-</section>
-   
     <!-- Footer-->
     <footer class="footer py-4">
         <div class="container">
